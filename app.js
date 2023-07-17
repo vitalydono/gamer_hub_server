@@ -1,5 +1,8 @@
 import express from "express";
 import tasks from "./router/tasks.js";
+import dotenv from "dotenv";
+import connect from "./db/connect.js";
+dotenv.config();
 
 const app = express();
 
@@ -11,8 +14,18 @@ app.get("/hello", (req, res) => {
 
 app.use("/api/v1/tasks", tasks);
 
-const port = 3000;
+const start = async () => {
+  try {
+    await connect();
+    app.listen(process.env.PORT, () => {
+      connect();
+      console.log(
+        `Server is listening on ${process.env.PORT}... and connect to mongoDB`
+      );
+    });
+  } catch (error) {
+    console.log({ error });
+  }
+};
 
-app.listen(port, () => {
-  console.log(`Server is listening on ${port}...`);
-});
+start();
