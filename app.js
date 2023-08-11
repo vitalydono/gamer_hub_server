@@ -1,5 +1,7 @@
 import express from "express";
-import tasks from "./router/tasks.js";
+import users from "./services/users/users.router.js";
+import auth from "./services/auth/auth.router.js";
+
 import dotenv from "dotenv";
 import connect from "./db/connect.js";
 dotenv.config();
@@ -13,7 +15,8 @@ app.get("/hello", (req, res) => {
   res.send("Task Maneger App");
 });
 
-app.use("/api/v1/tasks", tasks);
+app.use("/api/v1/users", users);
+app.use("/api/v1/auth", auth);
 
 const start = async () => {
   try {
