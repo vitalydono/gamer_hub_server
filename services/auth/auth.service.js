@@ -9,12 +9,12 @@ const login = async (loginBody) => {
   if (!user) {
     throw notExistUser;
   }
-  const { password } = user;
+  const { password, _id } = user;
   const comparePasswords = bcrypt.compareSync(loginPassword, password);
   if (!comparePasswords) {
     throw wrongPassword;
   }
-  const token = jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
+  const token = jwt.sign({ userId: _id }, process.env.SECRET_TOKEN, {
     expiresIn: "1h",
   });
 
