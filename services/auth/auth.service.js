@@ -21,4 +21,12 @@ const login = async (loginBody) => {
   return token;
 };
 
-export default { login };
+const refreshToken = async (req, res) => {
+  console.log("refresh token service");
+};
+
+const logout = async (req, res) => {
+  console.log("logout service");
+};
+
+export default { login, refreshToken, logout };

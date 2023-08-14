@@ -5,6 +5,11 @@ const UserSchema = new mongoose.Schema({
   email: String,
   mobile_number: Number,
   password: String,
+  profile: {
+    type: mongoose.Schema.Types,
+    ref: "Profile",
+    required: true,
+  },
 });
 
 UserSchema.statics.findByEmail = function (email) {

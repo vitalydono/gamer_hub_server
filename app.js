@@ -1,15 +1,17 @@
 import express from "express";
 import users from "./services/users/users.router.js";
 import auth from "./services/auth/auth.router.js";
-
+import profile from "./services/profile/profile.router.js";
 import dotenv from "dotenv";
 import connect from "./db/connect.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
 
 app.use(express.static("./public"));
 app.use(express.json());
+app.use(cookieParser());
 
 app.get("/hello", (req, res) => {
   res.send("Task Maneger App");
@@ -17,6 +19,7 @@ app.get("/hello", (req, res) => {
 
 app.use("/api/v1/users", users);
 app.use("/api/v1/auth", auth);
+app.use("/api/v1/profile", profile);
 
 const start = async () => {
   try {
