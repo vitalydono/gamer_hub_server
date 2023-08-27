@@ -1,6 +1,7 @@
 import express from "express";
 import users from "./services/users/users.router.js";
 import auth from "./services/auth/auth.router.js";
+import post from "./services/post/post.router.js";
 import profile from "./services/profile/profile.router.js";
 import dotenv from "dotenv";
 import connect from "./db/connect.js";
@@ -20,6 +21,7 @@ app.get("/hello", (req, res) => {
 app.use("/api/v1/users", users);
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/profile", profile);
+app.use("/api/v1/post", post);
 
 const start = async () => {
   try {
@@ -36,3 +38,5 @@ const start = async () => {
 };
 
 start();
+
+export default app;

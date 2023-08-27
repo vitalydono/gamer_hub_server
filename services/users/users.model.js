@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   profile: {
     type: mongoose.Schema.Types,
     ref: "Profile",
-    required: true,
+    required: false,
   },
 });
 
